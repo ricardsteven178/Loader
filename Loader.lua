@@ -3,7 +3,7 @@ task.wait(1)
 
 local INGAME_PLACE_ID = 16552821455
 local LOBBY_PLACE_ID  = 16116270224
-local CONFIG_NAME     = "RunTestV3"
+local CONFIG_NAME     = "RunTestV2"
 
 local REDIRECTS = {
     {
