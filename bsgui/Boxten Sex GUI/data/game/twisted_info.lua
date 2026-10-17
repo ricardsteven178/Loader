@@ -1,0 +1,56 @@
+return {
+	twistedrarities = {
+		["BoxtenMonster"] = "Common",
+		["BrushaMonster"] = "Common",
+		["CosmoMonster"] = "Common",
+		["LooeyMonster"] = "Common",
+		["PoppyMonster"] = "Common",
+		["ShrimpoMonster"] = "Common",
+		["TishaMonster"] = "Common",
+		["YattaMonster"] = "Common",
+		["RibeccaMonster"] = "Common",
+		["RudieMonster"] = "Common",
+		["EggsonMonster"] = "Common",
+
+		["BrightneyMonster"] = "Uncommon",
+		["ConnieMonster"] = "Uncommon",
+		["FinnMonster"] = "Uncommon",
+		["RazzleDazzleMonster"] = "Uncommon",
+		["RodgerMonster"] = "Uncommon",
+		["TeaganMonster"] = "Uncommon",
+		["ToodlesMonster"] = "Uncommon",
+		["SoulvesterMonster"] = "Uncommon",
+		["GingerMonster"] = "Uncommon",
+		["FlyteMonster"] = "Uncommon",
+
+		["BlottMonster"] = "Rare",
+		["FlutterMonster"] = "Rare",
+		["GigiMonster"] = "Rare",
+		["GlistenMonster"] = "Rare",
+		["GoobMonster"] = "Rare",
+		["ScrapsMonster"] = "Rare",
+		["SquirmMonster"] = "Rare",
+		["EclipseMonster"] = "Rare",
+		["CoalMonster"] = "Rare",
+		["CocoaMonster"] = "Rare",
+		["WaxwellMonster"] = "Rare",
+
+		["AstroMonster"] = "Main",
+		["PebbleMonster"] = "Main",
+		["ShellyMonster"] = "Main",
+		["SproutMonster"] = "Main",
+		["VeeMonster"] = "Main",
+		["GourdyMonster"] = "Main",
+		["BobetteMonster"] = "Main",
+		["BassieMonster"] = "Main",
+
+		["DandyMonster"] = "Lethal",
+		["DyleMonster"] = "Lethal",
+	},
+	
+	grabbers = {
+		["GoobMonster"] = true,
+		["ScrapsMonster"] = true,
+		["GigiMonster"] = true,
+	}
+}
