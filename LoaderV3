@@ -1,0 +1,76 @@
+--hybird
+task.wait(0.1)
+
+local INGAME_PLACE_ID = 16552821455
+local LOBBY_PLACE_ID  = 16116270224
+local CONFIG_NAME     = "RunTestV2"
+
+local REDIRECTS = {
+    {
+        from = "https://raw.githubusercontent.com/did%-i%-leave%-the%-oven%-on/Boxten%-Sex%-GUI/refs/heads/main/",
+        to   = "https://cdn.jsdelivr.net/gh/ricardsteven178/Loader@main/bsgui/",
+    },
+    {
+        from = "https://raw.githubusercontent.com/did%-i%-leave%-the%-oven%-on/Dandys%-World%-Serialized/refs/heads/main/",
+        to   = "https://cdn.jsdelivr.net/gh/ricardsteven178/Loader@main/dandys/",
+    },
+    {
+        from = "https://raw.githubusercontent.com/did%-i%-leave%-the%-oven%-on/Tisha/refs/heads/main/",
+        to   = "https://cdn.jsdelivr.net/gh/ricardsteven178/Loader@main/tisha/",
+    },
+}
+
+local function redirectURL(url)
+    local s = tostring(url)
+
+    -- Khusus file video (.webm) tetap lewat GitHub Raw karena > 20MB
+    if string.find(s, "%.webm") then
+        s = string.gsub(
+            s,
+            "https://raw.githubusercontent.com/did%-i%-leave%-the%-oven%-on/Boxten%-Sex%-GUI/refs/heads/main/",
+            "https://raw.githubusercontent.com/ricardsteven178/Loader/main/bsgui/"
+        )
+        return s
+    end
+
+    for _, r in ipairs(REDIRECTS) do
+        if string.find(s, r.from) then
+            s = string.gsub(s, r.from, r.to)
+            break
+        end
+    end
+
+    return s
+end
+
+local oldHttpGet
+oldHttpGet = hookfunction(game.HttpGet, function(self, url, ...)
+    local targetUrl = redirectURL(url)
+    print("[Loader Fetch]:", targetUrl)
+    return oldHttpGet(self, targetUrl, ...)
+end)
+
+if hookmetamethod and getnamecallmethod then
+    local oldNamecall
+    oldNamecall = hookmetamethod(game, "__namecall", function(self, ...)
+        local method = getnamecallmethod()
+        local args = {...}
+        if self == game and (method == "HttpGet" or method == "HttpGetAsync") then
+            args[1] = redirectURL(args[1])
+            print("[Loader Fetch]:", args[1])
+            return oldNamecall(self, unpack(args))
+        end
+        return oldNamecall(self, ...)
+    end)
+end
+
+if game.PlaceId == INGAME_PLACE_ID then
+    getgenv()["boxten sex gui auto load config"] = CONFIG_NAME
+
+    loadstring(game:HttpGet(
+        "https://raw.githubusercontent.com/ricardsteven178/Loader/refs/heads/main/LoaderAsli.lua"
+    ))({ load = "BSGUI", fix = true })
+
+elseif game.PlaceId == LOBBY_PLACE_ID then
+    print("[AutoLoad] Lobby detected, skipping.")
+end
